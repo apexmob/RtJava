@@ -1,0 +1,17 @@
+group 'com.apexmob.rtjava'
+version '1.0-SNAPSHOT'
+
+apply plugin: 'java'
+
+sourceCompatibility = 1.8
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    compile 'org.slf4j:slf4j-api:1.7.13'
+    compile 'io.reactivex:rxjava:1.0.2'
+
+    compile 'junit:junit:4.12'
+}
