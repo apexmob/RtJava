@@ -39,7 +39,6 @@ public class TestExecutor implements Func1<Test, Test> {
     @Override
     public Test call(Test test) {
         System.out.println(this.getClass().getName() + ":" + Thread.currentThread());
-        DefaultTestResult retVal = new DefaultTestResult(test);
         try {
             Assert.setTest(test);
 

@@ -1,22 +1,19 @@
 package com.apexmob.rtjava;
 
-public class DefaultAssertionResult implements AssertionResult {
+import com.apexmob.rtjava.selectors.DefaultAssertionEvent;
 
-    private final boolean wasSuccessful;
-    private final Test test;
+public class DefaultAssertionResult extends DefaultAssertionEvent implements AssertionResult {
 
-    public DefaultAssertionResult(boolean wasSuccessful, Test test) {
-        this.wasSuccessful = wasSuccessful;
-        this.test = test;
+    public DefaultAssertionResult(Test test, AssertionEventType type) {
+        super(test, type);
+        if (type != AssertionEventType.SUCCESS && type != AssertionEventType.FAILURE) {
+            throw new IllegalArgumentException("The type provided is not SUCCESS or FAILURE");
+        }
     }
 
     @Override
     public boolean wasSuccessful() {
-        return wasSuccessful;
+        return getType() == AssertionEventType.SUCCESS;
     }
 
-    @Override
-    public Test getTest() {
-        return test;
-    }
 }

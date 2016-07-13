@@ -1,5 +1,7 @@
 package com.apexmob.rtjava;
 
+import rx.functions.Action1;
+
 import java.util.List;
 
 public interface ExecutionConfiguration {
@@ -18,7 +20,7 @@ public interface ExecutionConfiguration {
 //
 //    List<TestFinalizer> getTestFinalizers();
 
-    List<AssertionResultListener> getAssertionResultListeners();
+    List<Action1<AssertionEvent>> getAssertionEventListeners();
 
     ExecutionDialect getExecutionDialect();
 

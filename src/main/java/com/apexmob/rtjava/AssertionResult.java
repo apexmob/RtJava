@@ -1,9 +1,7 @@
 package com.apexmob.rtjava;
 
-public interface AssertionResult {
+public interface AssertionResult extends AssertionEvent {
 
     boolean wasSuccessful();
-
-    Test getTest();
 
 }

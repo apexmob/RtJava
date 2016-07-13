@@ -8,8 +8,9 @@ public class DefaultTestResult implements TestResult {
     private final Test test;
     private List<AssertionResult> assertionResults = new ArrayList<>();
 
-    public DefaultTestResult(Test test) {
+    public DefaultTestResult(Test test, List<AssertionResult> assertionResults) {
         this.test = test;
+        this.assertionResults.addAll(assertionResults);
     }
 
     @Override
@@ -18,14 +19,20 @@ public class DefaultTestResult implements TestResult {
     }
 
     @Override
-    public void addAssertionResult(AssertionResult assertionResult) {
-        assertionResults.add(assertionResult);
+    public List<AssertionResult> getAssertionFailures() {
+        List<AssertionResult> retVal = new ArrayList<>();
+
+        for (AssertionResult result : assertionResults) {
+            if (!result.wasSuccessful()) {
+                retVal.add(result);
+            }
+        }
+
+        return retVal;
     }
 
     @Override
-    public List<AssertionResult> getAssertionResults() {
-        return new ArrayList<>(this.assertionResults);
+    public boolean wasSuccessful() {
+        return getAssertionFailures().size() == 0;
     }
-
-
 }

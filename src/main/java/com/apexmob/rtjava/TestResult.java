@@ -6,8 +6,8 @@ public interface TestResult {
 
     Test getTest();
 
-    void addAssertionResult(AssertionResult assertionResult);
+    List<AssertionResult> getAssertionFailures();
 
-    List<AssertionResult> getAssertionResults();
+    boolean wasSuccessful();
 
 }

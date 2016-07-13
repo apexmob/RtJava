@@ -1,14 +1,20 @@
 package com.apexmob.rtjava;
 
 import rx.Observable;
+import rx.functions.Action1;
 
 public class SingleThreadedExecutionRunner implements ExecutionRunner {
 
     @Override
     public void run(ExecutionConfiguration configuration) {
-        for (AssertionResultListener listener : configuration.getAssertionResultListeners()) {
+        for (Action1<AssertionEvent> listener : configuration.getAssertionEventListeners()) {
             Assert.getAssertionResultObservable().subscribe(listener);
         }
+
+        Assert.getAssertionResultObservable()
+                .lift(new CollectUntilOperator<>(new AssertionEventsCompletedSignal()))
+                .compose(new TestResultGenerator())
+                .subscribe(new SystemOutTestResultListener());
 
         Observable.just(configuration) //--> ExecutionConfiguration
                 .concatMap(new DefaultClassConfigurationGenerator()) //ExecutionConfiguration --> ClassConfiguration
