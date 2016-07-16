@@ -1,27 +1,30 @@
 package com.apexmob.rtjava;
 
+import org.junit.Ignore;
+
 import static com.apexmob.rtjava.Assert.*;
 
+@Ignore
 public class MockTest1 {
 	
 	@org.junit.BeforeClass
-	public void beforeClass() {
-		System.out.println(getClass() + ":" + "beforeClass()");
+	public static void beforeClass() {
+		System.out.println(MockTest1.class + ":" + "beforeClass()");
 	}
 	
 	@org.junit.AfterClass
-	public void afterClass() {
-		System.out.println(getClass() + ":" + "afterClass()");
+	public static void afterClass() {
+		System.out.println(MockTest1.class + ":" + "afterClass()");
 	}
 	
 	@org.junit.Before
 	public void beforeMethod() {
-		System.out.println(getClass() + ":" + "beforeMethod()");
+		System.out.println(MockTest1.class + ":" + "beforeMethod()");
 	}
 	
 	@org.junit.After
 	public void afterMethod() {
-		System.out.println(getClass() + ":" + "afterMethod()");
+		System.out.println(MockTest1.class + ":" + "afterMethod()");
 	}
 	
 	@org.junit.Test

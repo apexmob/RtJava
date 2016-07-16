@@ -3,9 +3,11 @@ package com.apexmob.rtjava;
 import java.util.ArrayList;
 import java.util.List;
 
-import org.junit.Ignore;
+import org.junit.*;
 
 import com.apexmob.rtjava.junit4.JUnit4Dialect;
+
+import static org.junit.Assert.assertTrue;
 
 public class RxJUnitRunnerTests {
 	
@@ -23,6 +25,7 @@ public class RxJUnitRunnerTests {
 		classes.add(MockTest1.class);
 		classes.add(MockTest2.class);
 		runner.exec(classes, new JUnit4Dialect());
+		assertTrue(true);
 	}
 
 }
